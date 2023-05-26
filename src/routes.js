@@ -1,18 +1,11 @@
 import { Router } from "express";
+import { usersController } from "./controllers/usersController.js";
 const routes = Router()
 
-const database = ['GRa']
+routes.get('/users', usersController.listarUsuario())
 
-routes.get('/users', (request, response) => { 
-  return response.status(200).json(database)
-})
-
-routes.post('/users', (request, response) => {
-  const {name} = request.body
-  database.push(name)
-  return response.status(201).json({'mensagem':`Usuário ${name} criado com sucesso`})
-})
-
+routes.post('/users', usersController.criarUsuario)
+export { routes };
 
 // STATUS CODE
 //200 E 201
@@ -22,4 +15,3 @@ routes.post('/users', (request, response) => {
 //POST - Criar os dados
 //PUT/PATCH - Editar os dados
 //DELETE - aPAGAR os os dados
-export {routes}
