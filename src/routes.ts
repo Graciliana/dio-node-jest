@@ -1,11 +1,14 @@
 import { Router } from "express";
-import { usersController } from "./controllers/usersController.js";
-const routes = Router()
+import { UsersController } from './controllers/usersController'
 
-routes.get('/users', usersController.listarUsuario())
+const routes = Router()
+const usersController = new UsersController()
+
+routes.get('/users', usersController.listarUsuario)
 
 routes.post('/users', usersController.criarUsuario)
-export { routes };
+
+export { routes }
 
 // STATUS CODE
 //200 E 201
